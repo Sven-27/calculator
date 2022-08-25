@@ -1,14 +1,33 @@
 const myInput = document.getElementById("result");
 const myOperator = document.getElementById("operator");
 
+let firstNumber = "";
+let secondNumber = "";
+
 function onClickNumber(number){
-  myInput.value += number;
-  console.log(number);
+  if(!myOperator.value){
+    firstNumber = myInput.value += number;
+  }else{
+    secondNumber = myInput.value += number;
+  }
 }
 
 function onClickOperator(operator){
   myOperator.value = operator;
-  console.log(operator);
+  myInput.value = ""
+  
+  if(operator === "+"){
+    return parseFloat(firstNumber) + parseFloat(secondNumber);
+  }
+  if(operator === "-"){
+    return parseFloat(firstNumber) - parseFloat(secondNumber);
+ }
+  if(operator === "*"){  
+    return parseFloat(firstNumber) * parseFloat(secondNumber);
+  }
+  if(operator === "/"){
+    return parseFloat(firstNumber) / parseFloat(secondNumber);
+  }
 }
 
 function onClickCancel(evt){
@@ -19,5 +38,7 @@ function onClickCancel(evt){
 
 function onClickEquals(evt){
   console.log(evt);
+  myInput.value = onClickOperator(myOperator.value);
+
 }
 

@@ -3,18 +3,33 @@ const myOperator = document.getElementById("operator");
 
 let firstNumber = "";
 let secondNumber = "";
+const empty = "";
 
-function onClickNumber(number){
-  if(!myOperator.value){
-    firstNumber = myInput.value += number;
+function startsNotWithZero(number){
+  if(myInput.value === empty || number[0] === "0"){
+    return myInput.value = empty;
   }else{
-    secondNumber = myInput.value += number;
+    return myInput.value;
   }
 }
+  
+  function onClickNumber(number){
+    const dot = ".";
 
+    if (myInput.value.indexOf(dot) !== -1 && number === dot) {
+      return;
+    }
+    if(!myOperator.value){
+      startsNotWithZero(firstNumber = myInput.value += number);
+    }
+    else{
+      startsNotWithZero(secondNumber = myInput.value += number);
+    }
+  }
+  
 function onClickOperator(operator){
   myOperator.value = operator;
-  myInput.value = ""
+  myInput.value = empty
   
   if(operator === "+"){
     return parseFloat(firstNumber) + parseFloat(secondNumber);
@@ -22,7 +37,7 @@ function onClickOperator(operator){
   if(operator === "-"){
     return parseFloat(firstNumber) - parseFloat(secondNumber);
  }
-  if(operator === "*"){  
+  if(operator === "x"){  
     return parseFloat(firstNumber) * parseFloat(secondNumber);
   }
   if(operator === "/"){
@@ -32,8 +47,8 @@ function onClickOperator(operator){
 
 function onClickCancel(evt){
   console.log(evt);
-  myInput.value = "";
-  myOperator.value = "";
+  myInput.value = empty;
+  myOperator.value = empty;
 }
 
 function onClickEquals(evt){
@@ -41,4 +56,3 @@ function onClickEquals(evt){
   myInput.value = onClickOperator(myOperator.value);
 
 }
-

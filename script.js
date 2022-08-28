@@ -6,13 +6,13 @@ let secondNumber = "";
 const empty = "";
 
 function startsNotWithZero(number){
-  if(myInput.value === empty || number[0] === "0"){
+  if(number[0] === "0"){
     return myInput.value = empty;
   }else{
     return myInput.value;
   }
 }
-  
+
   function onClickNumber(number){
     const dot = ".";
 
@@ -26,11 +26,13 @@ function startsNotWithZero(number){
       startsNotWithZero(secondNumber = myInput.value += number);
     }
   }
+
   
 function onClickOperator(operator){
   myOperator.value = operator;
-  myInput.value = empty
-  
+  myInput.value = empty;
+
+
   if(operator === "+"){
     return parseFloat(firstNumber) + parseFloat(secondNumber);
   }
@@ -54,5 +56,7 @@ function onClickCancel(evt){
 function onClickEquals(evt){
   console.log(evt);
   myInput.value = onClickOperator(myOperator.value);
+  myOperator.value = empty;
+  firstNumber = myInput.value;
 
 }
